@@ -5,43 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Interactive Org Chart</title>
 
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-        }
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: #02131D;
+    }
 
-        /* Responsive iframe container */
-        .iframe-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-        }
+    /* Responsive wrapper with automatic mobile scaling */
+    .responsive-wrap {
+        width: 100%;
+        height: 100vh;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        position: relative;
+    }
 
+    iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        transform-origin: top left;
+    }
+
+    /* Mobile-specific scaling */
+    @media (max-width: 768px) {
         iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+            transform: scale(0.75);   /* adjust if needed */
+            width: 133%;              /* 1 / 0.75 */
+            height: 133%;
         }
+    }
 
-        /* Ensure small screens can scroll / pinch-zoom inside chart */
-        @media (max-width: 600px) {
-            body {
-                overflow: auto;
-            }
-            .iframe-wrapper {
-                height: 100vh;
-            }
+    @media (max-width: 480px) {
+        iframe {
+            transform: scale(0.60);
+            width: 166.6%;            /* 1 / 0.6 */
+            height: 166.6%;
         }
-    </style>
+    }
+</style>
 </head>
 
 <body>
-    <div class="iframe-wrapper">
+    <div class="responsive-wrap">
         <iframe 
             allowfullscreen
             src="https://orgchart.hexviz.com/?config=%7B%22type%22%3A%22dark%22%2C%22doc%22%3A%22%22%2C%22data%22%3A%22https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2Fe%2F2PACX-1vRoHih9q2RW8K5Cd-dsr8r3dLa7iAQbBPdVokOI_-oEZQqwgWFtJ-Yv9stSAbdblPbQTbJddNIiZNLR%2Fpub%3Foutput%3Dcsv%22%7D&chart=%7B%22css%22%3A%22body%7Bbackground-color%3A%2302131D%20!important%7D.link%7Bstroke%3A%232599DD%20!important%7D.node-button-div%3Ediv%7Bcolor%3A%232599DD%20!important%3Bbackground-color%3A%20%23040910%20!important%3Bborder%3A%201px%20solid%20%232599DD%20!important%7D%22%2C%22nodeWidth%22%3A220%2C%22nodeHeight%22%3A85%2C%22neighbourMargin%22%3A80%2C%22compactMarginBetween%22%3A35%2C%22bgColor%22%3A%22%23ffffff00%22%2C%22compactMarginPair%22%3A50%2C%22siblingsMargin%22%3A25%2C%22childrenMargin%22%3A60%2C%22compact%22%3Afalse%2C%22duration%22%3A400%2C%22setActiveNodeCentered%22%3Atrue%2C%22rootMargin%22%3A40%2C%22layout%22%3A%22top%22%2C%22nodeContent%22%3A%22%3Cdiv%20style%3D%5C%22%20font-family%3A%20'Inter'%2C%20sans-serif%3B%20background-color%3A%20%23040910%3B%20position%3A%20absolute%3B%20margin-top%3A%20-1px%3B%20margin-left%3A%20-1px%3B%20width%3A%7BnodeWidth%7Dpx%3Bheight%3A%7BnodeHeight%7Dpx%3B%20border-radius%3A%2010px%3B%20border%3A%201px%20solid%20%230077c8%3B%20%5C%22%3E%5Cn%20%3Cdiv%20style%3D%5C%22%20background-color%3A%20%23B41425%3B%20position%3A%20absolute%3B%20margin-top%3A%20-25px%3B%20margin-left%3A%2015px%3B%20border-radius%3A%200px%3B%20width%3A%200px%3B%20height%3A%200px%3B%20%5C%22%3E%5Cn%20%3C%2Fdiv%3E%20%3Cimg%20src%3D%5C%22%7Bimg_url%7D%5C%22%5Cn%20style%3D%5C%22%20position%3A%20absolute%3B%20margin-top%3A%20-35px%3B%20margin-left%3A%2020px%3B%20border-radius%3A%200px%3B%20width%3A%2090px%3B%20height%3A%2060px%3B%20%5C%22%20%2F%3E%5Cn%20%3Cdiv%20style%3D%5C%22font-size%3A%2015px%3B%20color%3A%20%230077c8%3B%20margin-left%3A%2020px%3B%20margin-top%3A%2032px%5C%22%3E%20%7Bfirst_name%7D%20%7Blast_name%7D%20%3C%2Fdiv%3E%5Cn%20%3Cdiv%20style%3D%5C%22color%3A%20%23077c8%3B%20margin-left%3A%2020px%3B%20margin-top%3A%203px%3B%20font-size%3A%2010px%5C%22%3E%20%7Bjob_title%7D%20%3C%2Fdiv%3E%5Cn%20%3C%2Fdiv%3E%22%2C%22count%22%3A20%7D">
